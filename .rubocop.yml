@@ -1,2 +1,6 @@
+AllCops:
+  Exclude:
+    - "web/bin/*"
+
 Style/Documentation:
   Enabled: false
