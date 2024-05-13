@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema[7.0].define(version: 2024_05_13_132617) do
   create_table "searches", force: :cascade do |t|
+    t.datetime "next_appointment_at"
+    t.string "next_appointment_location"
+    t.string "next_appointment_doctor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

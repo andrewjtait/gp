@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require './lib/web_client'
 require './lib/user_info'
 require './lib/login'
 require './lib/find_appointments'
@@ -39,18 +40,15 @@ class Controller
   def log_appointments
     return if appointments.empty?
 
-    puts "The next available appointment is #{appointments[0].description}."
-
-    return if appointments.length == 1
-
-    puts "\nThere are also the following appointments available:"
-    appointments[1..].each do |appointment|
-      puts "• #{appointment.description}"
-    end
+    web_client.update(appointments)
   end
 
   def finish
     log_appointments
     driver.quit
+  end
+
+  def web_client
+    @web_client ||= WebClient.new
   end
 end

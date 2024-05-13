@@ -13,10 +13,6 @@ class Appointment
     @row = row
   end
 
-  def description
-    "#{datetime.strftime('%H:%M on %d/%m/%Y')} at #{location} with #{doctor}"
-  end
-
   def gp?
     type.include?('GP')
   end
@@ -43,5 +39,14 @@ class Appointment
 
   def type
     row.find_element(:css, "td:nth-child(#{TYPE_COLUMN_NUMBER})").text
+  end
+
+  def to_h
+    {
+      datetime:,
+      location:,
+      doctor:,
+      type:
+    }
   end
 end
