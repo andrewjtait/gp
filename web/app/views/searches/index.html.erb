@@ -1,9 +1,0 @@
-<h1>Search in progress...</h1>
-
-<% if @search.description.present? %>
-  <p>The next available appointment is <%= @search.description %>.</p>
-<% end %>
-
-<%= form_for @search, method: :delete do |f| %>
-  <%= f.submit "Stop searching" %>
-<% end %>

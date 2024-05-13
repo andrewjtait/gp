@@ -1,0 +1,7 @@
+<% if @search.description.present? %>
+  <p>The next available appointment is <%= @search.description %>.</p>
+<% else %>
+  <p>Search in progress...</p>
+<% end %>
+
+<%= link_to "Stop searching", stop_search_path %>
