@@ -8,6 +8,7 @@ ruby File.read(File.expand_path('../.ruby-version', __dir__)).strip
 gem 'base64'
 gem 'bigdecimal'
 gem 'bootsnap', require: false
+gem 'dotenv'
 gem 'importmap-rails'
 gem 'mutex_m'
 gem 'puma', '~> 5.0'

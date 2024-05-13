@@ -13,7 +13,7 @@ while (session = server.accept)
   request = session.gets
   puts request
 
-  if request.start_with?('POST / ')
+  if request&.start_with?('POST / ')
     session.print "HTTP/1.1 200\r\n"
     session.print "Content-Type: application/json\r\n"
     session.print "\r\n"
