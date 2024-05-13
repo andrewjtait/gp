@@ -27,6 +27,10 @@ class Search < ApplicationRecord
   def notify
     return unless previous_changes.key?(:next_appointment_at)
 
-    puts 'NOTIFY!'
+    SendTextService.new(
+      self,
+      previous_time: previous_changes[:next_appointment_at][0],
+      new_time: previous_changes[:next_appointment_at][1]
+    ).execute
   end
 end
