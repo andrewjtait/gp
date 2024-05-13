@@ -24,7 +24,7 @@ class ApiController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_token do |token, _options|
-      ActiveSupport::SecurityUtils.secure_compare(token, ENV['API_TOKEN'])
+      ActiveSupport::SecurityUtils.secure_compare(token, ENV['WEB_API_TOKEN'])
     end
   end
 

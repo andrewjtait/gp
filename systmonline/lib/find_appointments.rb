@@ -28,7 +28,10 @@ class FindAppointments
   end
 
   def find_appointments
-    driver.find_elements(*APPOINTMENT_TABLE_ROWS_SELECTOR)[1..].map do |row|
+    appointment_rows = driver.find_elements(*APPOINTMENT_TABLE_ROWS_SELECTOR)[1..]
+    return [] if appointment_rows.nil?
+
+    appointment_rows.map do |row|
       appointment = Appointment.new(row)
       next unless appointment.gp?
 

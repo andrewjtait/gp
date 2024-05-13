@@ -6,7 +6,7 @@ require 'selenium-webdriver'
 require './lib/controller'
 
 Controller.new(
-  url: ENV['URL'],
+  url: ENV['GP_URL'],
   name: ENV['NAME'],
   username: ENV['USERNAME'],
   password: ENV['PASSWORD']

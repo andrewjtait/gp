@@ -9,7 +9,7 @@ class Controller
   attr_reader :driver, :user_info, :appointments
 
   def initialize(url:, name:, username:, password:)
-    @driver = Selenium::WebDriver.for(:firefox)
+    @driver = initialize_driver(ENV['SELENIUM_REMOTE_URL'])
     @url = url
     @user_info = UserInfo.new(name:, username:, password:)
     @appointments = []
@@ -24,6 +24,14 @@ class Controller
   end
 
   private
+
+  def initialize_driver(remote_url)
+    if remote_url
+      Selenium::WebDriver.for(:remote, url: remote_url, options: Selenium::WebDriver::Options.firefox)
+    else
+      Selenium::WebDriver.for(:firefox)
+    end
+  end
 
   def open_website
     driver.get(@url)

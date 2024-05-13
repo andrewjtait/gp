@@ -1,0 +1,37 @@
+version: "3"
+services:
+  web:
+    build: ./web
+    entrypoint: [./docker/entrypoint.sh]
+    command: ["bin/rails", "s", "-b", "0.0.0.0"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./web/db/data:/opt/gp/data"
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - HOST=${HOST}
+      - GP_URL=${GP_URL}
+      - SEARCH_URL=${SEARCH_URL}
+      - WEB_API_TOKEN=${WEB_API_TOKEN}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_SENDER=${TWILIO_SENDER}
+      - TWILIO_RECIPIENTS=${TWILIO_RECIPIENTS}
+  systmonline:
+    build: ./systmonline
+    depends_on:
+      - firefox-webdriver
+    command: ["ruby", "server.rb"]
+    ports:
+      - "8000:8000"
+    environment:
+      - GP_URL=${GP_URL}
+      - WEB_API_URL=${WEB_API_URL}
+      - WEB_API_TOKEN=${WEB_API_TOKEN}
+      - NAME=${NAME}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - SELENIUM_REMOTE_URL=${SELENIUM_REMOTE_URL}
+  firefox-webdriver:
+    image: selenium/standalone-firefox:4.13.0

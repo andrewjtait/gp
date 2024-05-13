@@ -4,6 +4,7 @@ require 'socket'
 
 PORT = 8000
 
+$stdout.sync = true
 server = TCPServer.new(PORT)
 
 puts "Listening on port #{PORT}..."
